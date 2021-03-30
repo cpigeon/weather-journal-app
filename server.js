@@ -26,3 +26,8 @@ const server = app.listen(8081, function() {
   var port = server.address().port;
   console.log("App listening at http://%s:%s", host, port);
 })
+
+// GET Route that returns projectData
+app.get('/', function(req, res) {
+  res.send(projectData);
+})
