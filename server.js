@@ -31,3 +31,17 @@ const server = app.listen(8081, function() {
 app.get('/', function(req, res) {
   res.send(projectData);
 })
+
+// POST Route that adds incoming data
+app.post('/', addData);
+
+function addData(req, res) {
+  newEntry = {
+    temp: req.body.temp,
+    date: req.body.date,
+    response: req.body.response
+  }
+
+  projectData.push(newEntry);
+  res.send(newEntry);
+}
