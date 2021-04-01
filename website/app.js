@@ -16,7 +16,7 @@ function performAction(event) {
   const response = document.getElementById('feelings').value;
   getWeather(baseURL, zip, apiKey)
     .then(function(data) {
-      postData('/', {temp: data.main.temp, date: newDate, entry: response});
+      postData('/', {temp: data.main.temp, date: newDate, entry: response, location: data.name, highTemp: data.main.temp_max, lowTemp: data.main.temp_min});
     })
     .then(() => updateUI());
 }
@@ -27,6 +27,8 @@ const getWeather = async (baseURL, zip, apiKey) => {
   const res = await fetch(baseURL+zip+apiKey);
   try {
     const data = await res.json();
+    console.log(data);
+    console.log(data.name);
     return data;
   } catch(error) {
     console.log("error", error);
@@ -59,7 +61,10 @@ const updateUI = async () => {
   try {
     const allData = await req.json();
     document.getElementById('date').textContent = "Today's Date: " + allData.date;
-    document.getElementById('temp').textContent = "Temperature: " + Math.round((1.8 * (allData.temp - 273) + 32));
+    document.getElementById('location').textContent = "Location: " + allData.location;
+    document.getElementById('temp').textContent = "Current Temperature: " + Math.round((1.8 * (allData.temp - 273) + 32));
+    document.getElementById('highTemp').textContent = "High: " + Math.round((1.8 * (allData.highTemp - 273) + 32));
+    document.getElementById('lowTemp').textContent = "Low: " + Math.round((1.8 * (allData.lowTemp - 273) + 32));
     document.getElementById('content').textContent = "I'm feeling: " + allData.entry;
   } catch(error) {
     console.log("error", error);

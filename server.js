@@ -34,12 +34,18 @@ function addData(req, res) {
   newEntry = {
     temp: req.body.temp,
     date: req.body.date,
-    entry: req.body.entry
+    entry: req.body.entry,
+    location: req.body.location,
+    highTemp: req.body.highTemp,
+    lowTemp: req.body.lowTemp
   }
 
   projectData.temp = req.body.temp;
   projectData.date = req.body.date;
   projectData.entry = req.body.entry;
+  projectData.location = req.body.location;
+  projectData.highTemp = req.body.highTemp;
+  projectData.lowTemp = req.body.lowTemp;
 
   res.send(newEntry);
 }
