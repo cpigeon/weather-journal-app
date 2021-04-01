@@ -8,7 +8,7 @@ let d = new Date();
 let newDate = months[d.getMonth()]+' '+ d.getDate()+' '+ d.getFullYear();
 
 // Event Listener - Click on Element with ID 'generate'
-document.getElementById('generate').addEventListener('click', performAction)
+document.getElementById('generate').addEventListener('click', performAction);
 
 // Event Listener Callback Function: performAction
 function performAction(event) {
@@ -27,8 +27,6 @@ const getWeather = async (baseURL, zip, apiKey) => {
   const res = await fetch(baseURL+zip+apiKey);
   try {
     const data = await res.json();
-    console.log(data);
-    console.log(data.name);
     return data;
   } catch(error) {
     console.log("error", error);
@@ -37,7 +35,6 @@ const getWeather = async (baseURL, zip, apiKey) => {
 
 // Async function that uses fetch() to make a POST request to add the API data to the app
 const postData = async (url = "", data = {}) => {
-  console.log(data);
   const res = await fetch(url, {
     method: 'POST', // access the POST route setup in server side code
     credentials: 'same-origin',
