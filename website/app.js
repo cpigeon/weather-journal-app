@@ -16,7 +16,7 @@ function performAction(event) {
   const response = document.getElementById('feelings').value;
   getWeather(baseURL, zip, apiKey)
     .then(function(data) {
-      postData('/', {temp: data.main.temp, date: newDate, entry: response, location: data.name, highTemp: data.main.temp_max, lowTemp: data.main.temp_min});
+      postData('/', {temp: data.main.temp, date: newDate, zip: zip, entry: response, location: data.name, highTemp: data.main.temp_max, lowTemp: data.main.temp_min});
     })
     .then(() => updateUI());
 }
@@ -59,6 +59,7 @@ const updateUI = async () => {
     const allData = await req.json();
     document.getElementById('date').textContent = "Today's Date: " + allData.date;
     document.getElementById('location').textContent = "Location: " + allData.location;
+    document.getElementById('zipEntry').textContent = "Zip Code: " + allData.zip;
     document.getElementById('temp').textContent = "Current Temperature: " + allData.temp;
     document.getElementById('highTemp').textContent = "High: " + allData.highTemp;
     document.getElementById('lowTemp').textContent = "Low: " + allData.lowTemp;
