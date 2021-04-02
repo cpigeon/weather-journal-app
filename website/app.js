@@ -1,6 +1,6 @@
 /* Global Variables */
 const baseURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
-const apiKey = ",us&appid=9aae1adc99b0c613588bbe571588031d";
+const apiKey = ",us&appid=9aae1adc99b0c613588bbe571588031d&units=imperial";
 
 // Create a new date instance dynamically with JS
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -59,9 +59,9 @@ const updateUI = async () => {
     const allData = await req.json();
     document.getElementById('date').textContent = "Today's Date: " + allData.date;
     document.getElementById('location').textContent = "Location: " + allData.location;
-    document.getElementById('temp').textContent = "Current Temperature: " + Math.round((1.8 * (allData.temp - 273) + 32));
-    document.getElementById('highTemp').textContent = "High: " + Math.round((1.8 * (allData.highTemp - 273) + 32));
-    document.getElementById('lowTemp').textContent = "Low: " + Math.round((1.8 * (allData.lowTemp - 273) + 32));
+    document.getElementById('temp').textContent = "Current Temperature: " + allData.temp;
+    document.getElementById('highTemp').textContent = "High: " + allData.highTemp;
+    document.getElementById('lowTemp').textContent = "Low: " + allData.lowTemp;
     document.getElementById('content').textContent = "I'm feeling: " + allData.entry;
   } catch(error) {
     console.log("error", error);
