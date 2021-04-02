@@ -5,7 +5,7 @@ const apiKey = ",us&appid=9aae1adc99b0c613588bbe571588031d&units=imperial";
 // Create a new date instance dynamically with JS
 var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 let d = new Date();
-let newDate = months[d.getMonth()]+' '+ d.getDate()+' '+ d.getFullYear();
+let newDate = months[d.getMonth()]+' '+ d.getDate()+', '+ d.getFullYear();
 
 // Event Listener - Click on Element with ID 'generate'
 document.getElementById('generate').addEventListener('click', performAction);
@@ -57,13 +57,13 @@ const updateUI = async () => {
   const req = await fetch('/add');
   try {
     const allData = await req.json();
-    document.getElementById('date').textContent = "Today's Date: " + allData.date;
-    document.getElementById('location').textContent = "Location: " + allData.location;
-    document.getElementById('zipEntry').textContent = "Zip Code: " + allData.zip;
-    document.getElementById('temp').textContent = "Current Temperature: " + allData.temp;
-    document.getElementById('highTemp').textContent = "High: " + allData.highTemp;
-    document.getElementById('lowTemp').textContent = "Low: " + allData.lowTemp;
-    document.getElementById('content').textContent = "I'm feeling: " + allData.entry;
+    document.getElementById('date').innerHTML = "Today's Date: " + allData.date;
+    document.getElementById('location').innerHTML = "Location: " + allData.location;
+    document.getElementById('zipEntry').innerHTML = "Zip Code: " + allData.zip;
+    document.getElementById('temp').innerHTML = "Current Temperature: " + allData.temp;
+    document.getElementById('highTemp').innerHTML = "High: " + allData.highTemp;
+    document.getElementById('lowTemp').innerHTML = "Low: " + allData.lowTemp;
+    document.getElementById('content').innerHTML = "I'm feeling: " + allData.entry;
   } catch(error) {
     console.log("error", error);
   }
